@@ -25,4 +25,4 @@ steps:
     - '$_DOCKERHUB_PASSWORD'
 
 images:
-  - 'valentingarciairiart/mycalc:gcp'
+  - 'gcr.io/$PROJECT_ID/mycalc:gcp'
