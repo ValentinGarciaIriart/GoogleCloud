@@ -17,12 +17,14 @@ steps:
       - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
       - 'valentingarciairiart/calc:gcpdeluxe'      
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'login'
-      - '-u'
-      - 'valentingarciairiart'
-      - '-p'
-      - 'Vale0811!'
+    entrypoint: 'bash'
+    args: [
+      '-c',
+      'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+    ]
+    secretEnv:
+      - 'DOCKER_USERNAME'
+      - 'DOCKER_PASSWORD'
   - name: 'gcr.io/cloud-builders/docker' # al estar usando la imagen de docker al poner unicamente esto ya lo pushea
     args:
       - 'push'
@@ -32,4 +34,8 @@ steps:
 images:
   - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
   - 'valentingarciairiart/calc:gcpdeluxe'
-  
+
+#esto es para que cloud build use el secreto dockerhub-credentials creado
+availableSecrets:
+  - name: 'dockerhub-credentials'
+    version: 'latest'
