@@ -3,16 +3,16 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/My First Project/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
       - '.'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/My First Project/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'tag'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/My First Project/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
       - 'valentingarciairiart/calc:latest'      
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -27,5 +27,5 @@ steps:
       - 'valentingarciairiart/calc:gcpdeluxe'
 
 images:
-  - 'us-docker.pkg.dev/still-descent-423419-c7/My First Project/calc:gcpdeluxe'
+  - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
   - 'valentingarciairiart/calc:gcpdeluxe'
