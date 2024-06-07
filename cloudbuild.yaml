@@ -28,7 +28,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'push'
-    - 'valentingarciairiart/mycalc:gcp'
+    - 'docker.io/valentingarciairiart/mycalc:gcp'
 
 images:
   - 'gcr.io/$PROJECT_ID/mycalc:gcp'
