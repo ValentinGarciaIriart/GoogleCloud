@@ -7,3 +7,9 @@ steps:
     - 'gcr.io/$PROJECT_ID/calculadora:gcp'
     - '.'
   dir: '.'  # Ruta al directorio que contiene el Dockerfile
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: 
+   - 'push' 
+   - 'gcr.io/$PROJECT_ID/calculadora:gcp'
+
