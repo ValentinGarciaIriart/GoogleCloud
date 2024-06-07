@@ -1,6 +1,6 @@
 steps:
 # Construir la imagen a partir del Dockerfile en el repositorio
-- name: 'Construir_Imagen'
+- name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'build'
     - '-t'
@@ -9,14 +9,14 @@ steps:
   dir: '.'  # Ruta al directorio que contiene el Dockerfile
 
 # Subir la imagen al Artifact Registry
-- name: 'Pushear_al_Artifact'
+- name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'push'
     - 'gcr.io/$_PROJECT_ID/mycalc:gcp'
 
 
 # Iniciar sesión en Docker Hub
-- name: 'Dockerhub_Login'
+- name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'login'
     - '-u'
