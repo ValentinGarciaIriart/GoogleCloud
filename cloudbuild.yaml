@@ -11,6 +11,11 @@ steps:
       - 'us-docker.pkg.dev/still-descent-423419-c7/gcr.io/calc:gcpdeluxe'
   - name: 'gcr.io/cloud-builders/docker'
     args:
+      - 'tag'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/gcr.io/calc:gcpdeluxe'
+      - 'valentingarciairiart/calc:latest'      
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
       - 'login'
       - '-u'
       - 'valentingarciairiart'
