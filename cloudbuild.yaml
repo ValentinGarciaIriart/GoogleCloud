@@ -22,8 +22,8 @@ steps:
       - '-c'
       - 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
     secretEnv:
-      - 'DOCKER_USERNAME'
-      - 'DOCKER_PASSWORD'
+     DOCKER_USERNAME: ''
+     DOCKER_PASSWORD: ''
   - name: 'gcr.io/cloud-builders/docker' # al estar usando la imagen de docker al poner unicamente esto ya lo pushea
     args:
       - 'push'
