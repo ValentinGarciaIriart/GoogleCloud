@@ -18,10 +18,9 @@ steps:
       - 'valentingarciairiart/calc:gcpdeluxe'      
   - name: 'gcr.io/cloud-builders/docker'
     entrypoint: 'bash'
-    args: [
-      '-c',
-      'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-    ]
+    args: 
+      - '-c',
+      - 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
     secretEnv:
       - 'DOCKER_USERNAME'
       - 'DOCKER_PASSWORD'
