@@ -24,6 +24,7 @@ steps:
     - '-p'
     - '$_DOCKERHUB_PASSWORD'
 
+
 # Empujar la imagen a Docker Hub
 - name: 'gcr.io/cloud-builders/docker'
   args: 
