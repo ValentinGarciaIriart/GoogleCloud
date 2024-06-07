@@ -24,7 +24,7 @@ steps:
     - '-p'
     - '$_DOCKERHUB_PASSWORD'
 
-# Subir la imagen a Docker Hub
+# Empujar la imagen a Docker Hub
 - name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'push'
@@ -32,3 +32,4 @@ steps:
 
 images:
   - 'gcr.io/$PROJECT_ID/mycalc:gcp'
+  - 'valentingarciairiart/mycalc:gcp'
