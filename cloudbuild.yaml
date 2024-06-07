@@ -13,3 +13,10 @@ steps:
    - 'push' 
    - 'gcr.io/$PROJECT_ID/calculadora:gcp'
 
+- name: 'gcr.io/cloud-builders/docker'
+  args: 
+   - 'login' 
+   - '-u' 
+   - '$DOCKERHUB_USERNAME'
+   -  '-p' 
+   - '$DOCKERHUB_PASSWORD'
