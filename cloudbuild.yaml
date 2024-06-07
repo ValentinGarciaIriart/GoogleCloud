@@ -15,13 +15,5 @@ steps:
 
 - name: 'gcr.io/cloud-builders/docker'
   args: 
-   - 'login' 
-   - '-u' 
-   - 'valentingarciairiart'
-   -  '-p' 
-   - 'Vale0811!'
-
-- name: 'gcr.io/cloud-builders/docker'
-  args: 
    - 'push' 
    - 'valentingarciairiart/calculadora:gcpdeluxe' 
