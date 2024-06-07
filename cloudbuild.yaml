@@ -1,13 +1,12 @@
-triggers:
-- name: build-and-push
-  event: push
-  branch: main
-  filename: Dockerfile
-  build:
-    steps:
-    - name: 'gcr.io/cloud-builders/docker'
-      args: ['build', '-t', 'gcr.io/still-descent-423419-c7/mycalc:gcp', '.']
-    - name: 'gcr.io/cloud-builders/docker'
-      args: ['login', '-u', '$DOCKERHUB_USERNAME', '-p', '$DOCKERHUB_PASSWORD']
-    - name: 'gcr.io/cloud-builders/docker'
-      args: ['push', 'valentingarciairiart/mycalc:gcp']
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$_PROJECT_ID/mycalc:$COMMIT_SHA', '.']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['login', '-u', '$DOCKERHUB_USERNAME', '-p', '$DOCKERHUB_PASSWORD']
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'valentingarciairiart/mycalc:$COMMIT_SHA']
+
+images:
+- 'gcr.io/$_PROJECT_ID/mycalc:$COMMIT_SHA'
