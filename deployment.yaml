@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculadora
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calculadora
+  template:
+    metadata:
+      labels:
+        app: calculadora
+    spec:
+      containers:
+      - name: calc-container
+        image: valentingarciairiart/mycalc
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: calculadora-service
+spec:
+  selector:
+    app: calculadora
+  ports:
+    - protocol: TCP
+      port: 81
+      targetPort: 5000
+  type: LoadBalancer
