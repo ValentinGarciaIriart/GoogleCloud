@@ -3,7 +3,7 @@ steps:
   args: ['build', '-t', 'gcr.io/$_PROJECT_ID/mycalc:$COMMIT_SHA', '.']
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['login', '-u', '$DOCKERHUB_USERNAME', '-p', '$DOCKERHUB_PASSWORD']
+  args: ['login', '-u', '$_DOCKERHUB_USERNAME', '-p', '$_DOCKERHUB_PASSWORD']
 
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'valentingarciairiart/mycalc:$COMMIT_SHA']
