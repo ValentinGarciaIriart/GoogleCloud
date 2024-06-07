@@ -14,7 +14,6 @@ steps:
     - 'push'
     - 'gcr.io/$_PROJECT_ID/mycalc:gcp'
 
-
 # Iniciar sesión en Docker Hub
 - name: 'gcr.io/cloud-builders/docker'
   args: 
@@ -28,8 +27,7 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'push'
-    - 'docker.io/valentingarciairiart/mycalc:gcp'
+    - 'valentingarciairiart/mycalc:gcp'
 
 images:
-  - 'gcr.io/$PROJECT_ID/mycalc:gcp'
   - 'valentingarciairiart/mycalc:gcp'
