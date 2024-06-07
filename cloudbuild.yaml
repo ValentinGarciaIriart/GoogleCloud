@@ -33,4 +33,3 @@ steps:
 images:
   - 'gcr.io/$PROJECT_ID/mycalc:gcp'
   - 'docker.io/valentingarciairiart/mycalc:gcp'
-
