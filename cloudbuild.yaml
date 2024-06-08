@@ -3,19 +3,19 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:vtest'
       # La estructura es: ruta original/projectid/nombre del repo en artifact/nombre imagen:tag
       - '.'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:vtest'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'tag'
       # Se necesita un paso para tagear por un problema de incompatibilidad si no se tagea
-      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
-      - 'valentingarciairiart/calc:gcpdeluxe'
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:vtest'
+      - 'valentingarciairiart/calc:vtest'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'login'
@@ -26,9 +26,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'valentingarciairiart/calc:gcpdeluxe'
+      - 'valentingarciairiart/calc:vtest'
 
 # Es necesario una sección de imágenes para que las reconozca el Cloud Build: ahí son 2 imágenes, la del artifact y la de docker (que en realidad es la misma)
 images:
-  - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
-  - 'valentingarciairiart/calc:gcpdeluxe'
+  - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:vtest'
+  - 'valentingarciairiart/calc:vtest'
