@@ -16,15 +16,17 @@ steps:
       # se necesita un paso para tagear por un problema de incompatibilidad si no se tagea
       - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
       - 'valentingarciairiart/calc:gcpdeluxe'      
-  - name: 'gcr.io/cloud-builders/docker'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    secretEnv:
-      - 'DOCKER_USERNAME'
-      - 'DOCKER_PASSWORD'
+  - name: 'gcr.io/cloudbuild/docker'
+  args:
+  - 'login'
+  - '-u'
+  - '${SECRET_DOCKER_USERNAME}'
+  - '-p'
+  - '${SECRET_DOCKER_PASSWORD}'
+#esto es para que cloud build use el secreto dockerhub-credentials creado
+  secret:
+    - secretName: 'dockerhub-credentials'
+    - secretVersion: 'latest'
   - name: 'gcr.io/cloud-builders/docker' # al estar usando la imagen de docker al poner unicamente esto ya lo pushea
     args:
       - 'push'
@@ -34,9 +36,3 @@ steps:
 images:
   - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
   - 'valentingarciairiart/calc:gcpdeluxe'
-
-#esto es para que cloud build use el secreto dockerhub-credentials creado
-availableSecrets:
-  - name: 'dockerhub-credentials'
-    version: 'latest'
-    
