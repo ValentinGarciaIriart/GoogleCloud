@@ -20,15 +20,9 @@ steps:
     args:
       - 'login'
       - '-u'
-      - '${dockerhub-credentials-v1}'
+      - '${_DOCKER_USERNAME}'
       - '-p'
-      - '${dockerhub-credentials-v2}'
-    secretEnv:
-      - dockerhub-credentials-v1
-      - dockerhub-credentials-v2
-    secret:
-      - secretEnv: 'dockerhub-credentials'
-      - version: 'latest'
+      - '${_DOCKER_PASSWORD}'
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
