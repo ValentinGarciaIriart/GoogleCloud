@@ -3,8 +3,8 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe' #necesitas poner la ruta entera al repositorio en el artifact registry
-      #la estructura es: ruta original/projectid/nombre del repo en artifact/nombre imagen:tag
+      - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
+      # La estructura es: ruta original/projectid/nombre del repo en artifact/nombre imagen:tag
       - '.'
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -13,26 +13,26 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'tag'
-      # se necesita un paso para tagear por un problema de incompatibilidad si no se tagea
+      # Se necesita un paso para tagear por un problema de incompatibilidad si no se tagea
       - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
       - 'valentingarciairiart/calc:gcpdeluxe'      
-  - name: 'gcr.io/cloudbuild/docker'
-  args:
-  - 'login'
-  - '-u'
-  - '${SECRET_DOCKER_USERNAME}'
-  - '-p'
-  - '${SECRET_DOCKER_PASSWORD}'
-#esto es para que cloud build use el secreto dockerhub-credentials creado
-  secret:
-    - secretName: 'dockerhub-credentials'
-    - secretVersion: 'latest'
-  - name: 'gcr.io/cloud-builders/docker' # al estar usando la imagen de docker al poner unicamente esto ya lo pushea
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'login'
+      - '-u'
+      - '${SECRET_DOCKER_USERNAME}'
+      - '-p'
+      - '${SECRET_DOCKER_PASSWORD}'
+    secretEnv:
+      - SECRET_DOCKER_USERNAME
+      - SECRET_DOCKER_PASSWORD
+  # Esto es para que Cloud Build use el secreto dockerhub-credentials creado
+  - name: 'gcr.io/cloud-builders/docker' # Al estar usando la imagen de docker, al poner únicamente esto ya lo pushea
     args:
       - 'push'
       - 'valentingarciairiart/calc:gcpdeluxe'
 
-#es necesario una seccion de imagenes para que las reconozca el cloud build: ahi son 2 imagenes, la del artifact y la de docker (que en realidad es la misma)
+# Es necesario una sección de imágenes para que las reconozca el Cloud Build: ahí son 2 imágenes, la del artifact y la de docker (que en realidad es la misma)
 images:
   - 'us-docker.pkg.dev/still-descent-423419-c7/my-first-project/calc:gcpdeluxe'
   - 'valentingarciairiart/calc:gcpdeluxe'
