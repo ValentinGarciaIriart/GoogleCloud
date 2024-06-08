@@ -20,12 +20,12 @@ steps:
     args:
       - 'login'
       - '-u'
-      - '${SECRET_DOCKER_USERNAME}'
+      - '${dockerhub-credentials-v1}'
       - '-p'
-      - '${SECRET_DOCKER_PASSWORD}'
+      - '${dockerhub-credentials-v2}'
     secretEnv:
-      - SECRET_DOCKER_USERNAME
-      - SECRET_DOCKER_PASSWORD
+      - dockerhub-credentials-v1
+      - dockerhub-credentials-v2
     secret:
       - secretEnv: 'dockerhub-credentials'
       - version: 'latest'
